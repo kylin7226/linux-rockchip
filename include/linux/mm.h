@@ -43,6 +43,13 @@ void init_mm_internals(void);
 #ifndef CONFIG_NUMA		/* Don't use mapnrs, do it properly */
 extern unsigned long max_mapnr;
 
+static inline void vm_flags_set(struct vm_area_struct *vma, vm_flags_t flags){ 
+vma->vm_flags |= flags; 
+} 
+static inline void vm_flags_clear(struct vm_area_struct *vma, vm_flags_t flags){ 
+vma->vm_flags &= ~flags; 
+} 
+
 static inline void set_max_mapnr(unsigned long limit)
 {
 	max_mapnr = limit;
